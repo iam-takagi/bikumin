@@ -28,7 +28,6 @@ class BotService (val token: String, val sokujiService: SokujiService, val dev: 
     lateinit var jda: JDA
     lateinit var settingsService: GuildSettingsService
     val eventWaiter = EventWaiter()
-    val WEBSITE = System.getenv("WEBSITE")
 
     fun start() : BotService {
         instance = this
