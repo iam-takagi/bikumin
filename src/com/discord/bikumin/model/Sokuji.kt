@@ -34,7 +34,7 @@ class Sokuji(val guildId: Long,
     }
 
     fun getOverlayUrl() : String{
-        return "https://sokujichan.herokuapp.com/$guildId-$channelId"
+        return "https://bikumin.herokuapp.com/$guildId-$channelId"
     }
 
     fun getTextChannel() : TextChannel? {
