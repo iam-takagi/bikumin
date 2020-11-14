@@ -1,5 +1,7 @@
 package com.discord.bikumin.router
 
+import com.discord.bikumin.model.Sokuji
+import com.discord.bikumin.service.SokujiService
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.html.respondHtml
@@ -13,8 +15,6 @@ import io.ktor.routing.Route
 import io.ktor.routing.get
 import kotlinx.css.*
 import kotlinx.html.*
-import me.notsmatch.sokujichan.model.Sokuji
-import me.notsmatch.sokujichan.service.SokujiService
 import org.apache.commons.lang3.math.NumberUtils
 
 fun Route.renderingRouter(sokujiService: SokujiService) {
@@ -67,7 +67,7 @@ fun Route.renderingRouter(sokujiService: SokujiService) {
 
         val sokuji: Sokuji = sokujiService.getSokuji(guildId, channelId) ?: return@get call.respondHtml(HttpStatusCode.NotFound) {
             head {
-                title { +"データが見つかりません / 即時ちゃん(6vs6)" }
+                title { +"データが見つかりません / びく民(6vs6)" }
                 link ( rel = "icon", href = "/static/icon/favicon.ico", type = "image/x-icon")
                 link ( rel = "shortcut icon", href = "/static/icon/favicon.ico", type = "image/x-icon")
                 styleLink("/static/css/main.css")
@@ -90,7 +90,7 @@ fun Route.renderingRouter(sokujiService: SokujiService) {
         sokuji.apply {
             return@get call.respondHtml {
                 head {
-                    title { +"$teamA vs $teamB / 即時ちゃん(6vs6)" }
+                    title { +"$teamA vs $teamB / びく民(6vs6)" }
                     styleLink("/static/css/main.css")
                     link ( rel = "icon", href = "/static/icon/favicon.ico", type = "image/x-icon")
                     link ( rel = "shortcut icon", href = "/static/icon/favicon.ico", type = "image/x-icon")

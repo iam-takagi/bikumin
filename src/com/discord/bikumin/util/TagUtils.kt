@@ -1,6 +1,6 @@
 package com.discord.bikumin.util
 
-import me.notsmatch.sokujichan.service.BotService
+import com.discord.bikumin.service.BotService
 import java.lang.StringBuilder
 
 object TagUtils {
