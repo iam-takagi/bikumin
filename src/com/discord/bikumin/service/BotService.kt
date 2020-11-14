@@ -49,7 +49,12 @@ class BotService (val token: String, val sokujiService: SokujiService, val dev: 
             SetScoreCommand(sokujiService),
             PenaltyCommand(sokujiService),
             SetRaceSizeCommand(sokujiService),
-            OverlayCommand(sokujiService)
+            OverlayCommand(sokujiService),
+            ChooseCommand(),
+            KanaTagCommand(),
+            NumTagCommand(),
+            TagCommand(),
+            TeamCommand()
         )
 
         builder.setHelpWord("bikumin")
