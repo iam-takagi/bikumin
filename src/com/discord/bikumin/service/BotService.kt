@@ -31,6 +31,7 @@ class BotService (val token: String, val sokujiService: SokujiService, val dev: 
 
     fun start() : BotService {
         instance = this
+        random = Random()
         mongoService = MongoService(dev)
         settingsService = GuildSettingsService(mongoService)
         jda = JDABuilder(AccountType.BOT).setToken(token).setStatus(OnlineStatus.ONLINE).build()
@@ -38,7 +39,7 @@ class BotService (val token: String, val sokujiService: SokujiService, val dev: 
         val builder = CommandClientBuilder()
 
         builder.setOwnerId("695218967173922866")
-        builder.setPrefix("!")
+        builder.setPrefix("_")
 
         builder.addCommands(
             StartCommand(sokujiService),

@@ -10,7 +10,7 @@ import java.awt.Color
 class ChooseCommand : Command() {
 
     init {
-        this.name = "c"
+        this.name = "choose"
         this.help = "Chooseします (20まで)"
         this.arguments = "<選択肢1> <選択肢2> <選択肢3>..."
     }
