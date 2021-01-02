@@ -103,16 +103,17 @@ class Mogi(val guildId: Long,
         // FFA
         if (size == 1) {
             participant = MogiParticipant(s)
-        }
+        }else {
 
-        //FFA以外
-        val players = mutableListOf<MogiPlayer>()
-        members.forEach {
-            players.add(MogiPlayer(it.idLong))
-        }
+            //FFA以外
+            val players = mutableListOf<MogiPlayer>()
+            members.forEach {
+                players.add(MogiPlayer(it.idLong))
+            }
 
-        TeamMogiParticipant(s).addPlayers(players)
-        participants?.add(participant!!)
+            TeamMogiParticipant(s).addPlayers(players)
+            participants?.add(participant!!)
+        }
 
         channel.sendMessage(participant!!.conjoinedNames(guild) + " added to mogi / 模擬に参加しました").queue()
     }
