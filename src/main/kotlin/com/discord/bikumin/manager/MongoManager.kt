@@ -1,4 +1,4 @@
-package com.discord.bikumin.service
+package com.discord.bikumin.manager
 
 import com.mongodb.*
 import com.mongodb.client.FindIterable
@@ -7,12 +7,11 @@ import com.mongodb.client.MongoDatabase
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.ReplaceOptions
 import org.bson.Document
-import org.bson.conversions.Bson
-import java.util.*
 
 
-class MongoService(dev: Boolean) {
+object MongoManager {
 
+    val dev = false
     val client: MongoClient
     val database: MongoDatabase
     val sokuji_collection: MongoCollection<Document>

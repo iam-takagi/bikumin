@@ -1,11 +1,11 @@
-package com.discord.bikumin.service
+package com.discord.bikumin.manager
 
 import com.discord.bikumin.model.GuildSettings
 
-class GuildSettingsService(val mongoService: MongoService) {
+object GuildSettingsManager {
 
     fun getGuildSettings(guildId: Long) : GuildSettings {
-        mongoService.apply {
+        MongoManager.apply {
             val doc = findGuildSettings(guildId)
             if(doc == null){
                 val settings = GuildSettings(guildId)
