@@ -1,6 +1,6 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.common
 
-import com.discord.bikumin.service.BotService
+import com.discord.bikumin.Bot
 import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 import net.dv8tion.jda.api.EmbedBuilder
@@ -27,7 +27,7 @@ class ChooseCommand : Command() {
                 }.build())
             }
 
-            reply(args[BotService.random.nextInt(args.size)])
+            reply(args[Bot.random.nextInt(args.size)])
         }
     }
 }

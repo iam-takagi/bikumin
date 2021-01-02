@@ -1,12 +1,12 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.sokuji
 
-import com.discord.bikumin.service.SokujiService
+import com.discord.bikumin.manager.SokujiManager
 import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.math.NumberUtils
 
-class RevertScoreCommand (val sokujiService: SokujiService): Command() {
+class RevertScoreCommand : Command() {
 
     init {
         this.name = "revertscore"
@@ -17,7 +17,7 @@ class RevertScoreCommand (val sokujiService: SokujiService): Command() {
     override fun execute(event: CommandEvent?) {
         event?.apply {
             val args = StringUtils.split(args)
-            val sokuji = sokujiService.getSokuji(guild.idLong, channel.idLong) ?: return reply("即時集計は開始されていません")
+            val sokuji = SokujiManager.getSokuji(guild.idLong, channel.idLong) ?: return reply("即時集計は開始されていません")
 
             if(args.isNotEmpty()) {
 

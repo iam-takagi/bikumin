@@ -1,6 +1,6 @@
 package com.discord.bikumin.util
 
-import com.discord.bikumin.service.BotService
+import com.discord.bikumin.Bot
 import java.lang.StringBuilder
 
 object TagUtils {
@@ -37,7 +37,7 @@ object TagUtils {
         val tag = StringBuilder()
 
         for(i in 0 until length){
-            tag.append(getAlphabet(BotService.random.nextInt(alphabet.size)))
+            tag.append(getAlphabet(Bot.random.nextInt(alphabet.size)))
         }
 
         return tag.toString() + " | " + tag.toString().toUpperCase()
@@ -47,7 +47,7 @@ object TagUtils {
         return StringBuilder().apply {
 
             for (i in 0 until length) {
-                append(hiragana[BotService.random.nextInt(hiragana.size)])
+                append(hiragana[Bot.random.nextInt(hiragana.size)])
             }
 
         }.toString()
@@ -57,7 +57,7 @@ object TagUtils {
         val tag = StringBuilder()
 
         for(i in 0 until length){
-            tag.append(num[BotService.random.nextInt(num.size)])
+            tag.append(num[Bot.random.nextInt(num.size)])
         }
 
         return tag.toString()

@@ -1,14 +1,14 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.sokuji
 
 import com.discord.bikumin.model.Race
 import com.discord.bikumin.model.Spots
-import com.discord.bikumin.service.SokujiService
+import com.discord.bikumin.manager.SokujiManager
 import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.math.NumberUtils
 
-class RaceCommand(val sokujiService: SokujiService) : Command() {
+class RaceCommand : Command() {
 
     init {
         this.name = "race"
@@ -19,7 +19,7 @@ class RaceCommand(val sokujiService: SokujiService) : Command() {
     override fun execute(event: CommandEvent?) {
         event?.apply {
             val args = StringUtils.split(args)
-            val sokuji = sokujiService.getSokuji(guild.idLong, channel.idLong) ?: return reply("即時集計は開始されていません")
+            val sokuji = SokujiManager.getSokuji(guild.idLong, channel.idLong) ?: return reply("即時集計は開始されていません")
 
             if(sokuji.getRacesLeft() == 0) return reply("レースは終了しました")
 

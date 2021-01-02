@@ -1,7 +1,7 @@
 package com.discord.bikumin.router
 
 import com.discord.bikumin.model.Sokuji
-import com.discord.bikumin.service.SokujiService
+import com.discord.bikumin.manager.SokujiManager
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.html.respondHtml
@@ -17,7 +17,7 @@ import kotlinx.css.*
 import kotlinx.html.*
 import org.apache.commons.lang3.math.NumberUtils
 
-fun Route.renderingRouter(sokujiService: SokujiService) {
+fun Route.renderingRouter() {
 
     static ("static") {
         static("css"){
@@ -42,7 +42,7 @@ fun Route.renderingRouter(sokujiService: SokujiService) {
         if(!NumberUtils.isNumber(id[0]) || !NumberUtils.isNumber(id[1])) {
             return@get call.respondHtml(HttpStatusCode.NotFound) {
                 head {
-                    title { +"データが見つかりません / 即時ちゃん(6vs6)" }
+                    title { +"データが見つかりません / びく民(6vs6)" }
                     link(rel = "icon", href = "/static/icon/favicon.ico", type = "image/x-icon")
                     link(rel = "shortcut icon", href = "/static/icon/favicon.ico", type = "image/x-icon")
                     styleLink("/static/css/main.css")
@@ -65,7 +65,7 @@ fun Route.renderingRouter(sokujiService: SokujiService) {
         val guildId = id[0].toLong()
         val channelId = id[1].toLong()
 
-        val sokuji: Sokuji = sokujiService.getSokuji(guildId, channelId) ?: return@get call.respondHtml(HttpStatusCode.NotFound) {
+        val sokuji: Sokuji = SokujiManager.getSokuji(guildId, channelId) ?: return@get call.respondHtml(HttpStatusCode.NotFound) {
             head {
                 title { +"データが見つかりません / びく民(6vs6)" }
                 link ( rel = "icon", href = "/static/icon/favicon.ico", type = "image/x-icon")

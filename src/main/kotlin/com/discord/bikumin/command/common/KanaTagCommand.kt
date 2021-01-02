@@ -1,4 +1,4 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.common
 
 import com.discord.bikumin.util.NumberUtils
 import com.discord.bikumin.util.TagUtils

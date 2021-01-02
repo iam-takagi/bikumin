@@ -1,12 +1,12 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.sokuji
 
 import com.discord.bikumin.Config
-import com.discord.bikumin.service.SokujiService
+import com.discord.bikumin.manager.SokujiManager
 import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 import net.dv8tion.jda.api.EmbedBuilder
 
-class OverlayCommand (val sokujiService: SokujiService): Command() {
+class OverlayCommand: Command() {
 
     init {
         this.name = "overlay"
@@ -15,7 +15,7 @@ class OverlayCommand (val sokujiService: SokujiService): Command() {
 
     override fun execute(event: CommandEvent?) {
         event?.apply {
-            val sokuji = sokujiService.getSokuji(guild.idLong, channel.idLong)?: return reply("即時集計は開始されていません")
+            val sokuji = SokujiManager.getSokuji(guild.idLong, channel.idLong)?: return reply("即時集計は開始されていません")
             sokuji.apply {
                 reply(EmbedBuilder().apply {
                     setColor(Config.EMBED_COLOR)

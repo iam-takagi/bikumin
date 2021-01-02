@@ -1,7 +1,8 @@
 package com.discord.bikumin.model
 
 import com.discord.bikumin.Config
-import com.discord.bikumin.service.BotService
+import com.discord.bikumin.Bot
+import com.discord.bikumin.manager.MongoManager
 import com.discord.bikumin.util.JsonUtils
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -38,7 +39,7 @@ class Sokuji(val guildId: Long,
     }
 
     fun getTextChannel() : TextChannel? {
-        val guild = BotService.instance.jda.getGuildById(guildId) ?: return null
+        val guild = Bot.instance.jda.getGuildById(guildId) ?: return null
         return guild.getTextChannelById(channelId) ?: return null
     }
 
@@ -189,7 +190,7 @@ class Sokuji(val guildId: Long,
      * 保存します
      */
     fun save() {
-        BotService.mongoService.replaceSokuji(guildId, channelId, toDocument())
+        MongoManager.replaceSokuji(guildId, channelId, toDocument())
     }
 
     /**

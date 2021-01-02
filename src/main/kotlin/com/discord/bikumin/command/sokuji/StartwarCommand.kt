@@ -1,14 +1,14 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.sokuji
 
-import com.discord.bikumin.service.SokujiService
+import com.discord.bikumin.manager.SokujiManager
 import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 import org.apache.commons.lang3.StringUtils
 
-class StartCommand(val sokujiService: SokujiService) : Command() {
+class StartwarCommand : Command() {
 
     init {
-        this.name = "start"
+        this.name = "startwar"
         this.help = "集計を開始します | teamAに自分のチームを入力してください"
         this.arguments = "<teamA> <teamB>"
     }
@@ -22,7 +22,7 @@ class StartCommand(val sokujiService: SokujiService) : Command() {
                     return reply("teamAとteamBの名前は別のものにしてください")
                 }
 
-                val sokuji = sokujiService.addSokuji(guild.idLong, channel.idLong, args[0], args[1]) ?: return reply("既に即時集計が開始されています")
+                val sokuji = SokujiManager.addSokuji(guild.idLong, channel.idLong, args[0], args[1]) ?: return reply("既に即時集計が開始されています")
                 sokuji.start()
             }else{
                 reply("``_start <teamA> <teamB>``\nteamAに自分のチームを入力してください")

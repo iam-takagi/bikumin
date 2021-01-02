@@ -1,19 +1,19 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.sokuji
 
-import com.discord.bikumin.service.SokujiService
+import com.discord.bikumin.manager.SokujiManager
 import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 
-class StopCommand(val sokujiService: SokujiService) : Command() {
+class EndwarCommand : Command() {
 
     init {
-        this.name = "stop"
+        this.name = "endwar"
         this.help = "即時集計を終了します"
     }
 
     override fun execute(event: CommandEvent?) {
         event?.apply {
-            if(sokujiService.removeSokuji(guild.idLong, channel.idLong)){
+            if(SokujiManager.removeSokuji(guild.idLong, channel.idLong)){
                 reply("即時集計を終了しました")
             }else{
                 reply("即時集計は開始されていません")

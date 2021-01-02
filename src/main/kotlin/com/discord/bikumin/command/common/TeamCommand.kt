@@ -1,4 +1,4 @@
-package com.discord.bikumin.command
+package com.discord.bikumin.command.common
 
 import com.discord.bikumin.Config
 import com.discord.bikumin.util.NumberUtils
@@ -14,22 +14,22 @@ class TeamCommand : Command() {
 
     init {
         this.name = "t"
-        this.help = "チーム分けをします\nチーム形式\n1: FFA\n2: 2v2\n3: 3v3\n4: 4v4\n5: 5v5\n6: 6v6"
-        this.arguments = "<チーム形式> <name1> <name2> <name3>..."
+        this.help = "チーム分けをします\nsize\n1: FFA\n2: 2v2\n3: 3v3\n4: 4v4\n5: 5v5\n6: 6v6"
+        this.arguments = "<size> <name1> <name2> <name3>..."
     }
 
     override fun execute(event: CommandEvent?) {
         event?.apply {
             val args = StringUtils.split(args)
 
-            var teamType: Int = 0
+            var size = 0
             if (args.isNotEmpty()) {
 
                 if(!NumberUtils.isInteger(args[0])){
                     return reply(EmbedBuilder().apply {
                         setColor(Color.RED)
                         setTitle("Error")
-                        setDescription("チーム形式は2~6で指定してください\n``_t <チーム形式> <name1> <name2> <name3>...``\n" +
+                        setDescription("チーム形式は1~6で指定してください\n``_t <チーム形式> <name1> <name2> <name3>...``\n" +
                                 "チーム形式\n" +
                                 "1: FFA\n" +
                                 "2: 2v2\n" +
@@ -40,9 +40,9 @@ class TeamCommand : Command() {
                     }.build())
                 }
 
-                teamType = args[0].toInt()
+                size = args[0].toInt()
 
-                if(teamType > 6 || teamType < 1){
+                if(size > 6 || size < 1){
                     return reply(EmbedBuilder().apply {
                         setColor(Color.RED)
                         setTitle("Error")
@@ -77,17 +77,17 @@ class TeamCommand : Command() {
             }
 
 
-            val makeTeamSize = (players.size + teamType - 1 ) / teamType
+            val makeTeamSize = (players.size + size - 1 ) / size
 
             val teams = TeamUtils.compose(players, makeTeamSize)
 
             //結果出力
             reply(EmbedBuilder().apply {
                 var type = ""
-                if(teamType == 1){
+                if(size == 1){
                     type = ""
                 } else {
-                    type = "(" + teamType + "v" + teamType + ")"
+                    type = "(" + size + "v" + size + ")"
                 }
 
                 setColor(Config.EMBED_COLOR)
