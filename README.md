@@ -7,4 +7,6 @@
 [![issues](https://img.shields.io/github/issues/iamtakagi/bikumin)](https://github.com/iamtakagi/bikumin/issues)
 [![pull requests](https://img.shields.io/github/issues-pr/iamtakagi/bikumin)](https://github.com/iamtakagi/bikumin/pulls)
 
-🐘 Working on [びく民](https://discord.gg/VgBA8KY)
+🐘 Working on [びく民](https://discord.gg/VgBA8KY)\
+🐋 Running on Docker.\ 
+📦 Deploying to Heroku.
