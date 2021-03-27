@@ -23,3 +23,7 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
           docker_heroku_process_type: worker
+          docker_build_args: |
+            BOT_TOKEN
+        env:
+          SCREEN_NAME: ${{ secrets.BOT_TOKEN }}
