@@ -9,8 +9,6 @@ fun Application.module() {
     install(DefaultHeaders)
     install(CallLogging)
 
-    val bot = Bot(System.getenv("TOKEN")).start()
-
     install(CORS) {
         method(HttpMethod.Options)
         method(HttpMethod.Put)
