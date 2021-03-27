@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/46530214/112728930-fdaac800-8f6c-11eb-8f7f-fc1074e77585.png" height="256" width="256"/>
+</div>
+
 # bikumin: 🏎 マリオカート8DX びく民ボット
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.4.30-blue)](https://kotlinlang.org)
