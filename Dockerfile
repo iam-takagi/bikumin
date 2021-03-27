@@ -6,8 +6,6 @@ FROM gradle:jdk8 AS cache
 WORKDIR /app
 ENV GRADLE_USER_HOME /app/gradle
 COPY *.gradle.kts gradle.properties /app/
-ARG BOT_TOKEN
-ENV BOT_TOKEN=$BOT_TOKEN
 
 # Full build if there are any deps changes
 RUN gradle shadowJar --parallel --no-daemon --quiet
@@ -27,6 +25,9 @@ RUN gradle -version > /dev/null \
 # Final Stage
 FROM openjdk:8-jre-alpine
 COPY --from=build /app/build/libs/bikumin-all.jar /app/bikumin.jar
+
+ARG BOT_TOKEN
+ENV BOT_TOKEN=$BOT_TOKEN
 
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "/app/bikumin.jar"]
