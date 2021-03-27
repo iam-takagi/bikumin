@@ -116,8 +116,6 @@ gradle-app.setting
 
 build/
 
-gradle/
-
 out/
 
 Dockerfile.local
