@@ -119,3 +119,5 @@ build/
 gradle/
 
 out/
+
+Dockerfile.local
