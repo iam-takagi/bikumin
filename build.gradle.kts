@@ -1,15 +1,22 @@
 group = "com.discord.bikumin"
-val artifactID = "bikumin"
-val versionMajor = 0
-val versionMinor = 0
-val versionPatch = 1
-version = "${versionMajor}.${versionMinor}.${versionPatch}"
-val ktor_version = "1.3.2"
-val kotlin_version = "1.4.21"
-val logback_version = "1.2.1"
+
+object Versions {
+    const val Ktor = "1.5.1"
+    const val KotlinCssJvm = "1.0.0-pre.86-kotlin-1.3.50"
+
+    const val JDA = "4.2.0_168"
+    const val JDAUtilities = "3.0.5"
+
+    const val Logback = "1.2.3"
+    const val KotlinLogging = "2.0.4"
+    const val jansi = "1.18"
+
+    const val CommonsLang = "3.3.1"
+    const val JUnit = "5.7.0"
+}
 
 plugins {
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.4.30"
     id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
@@ -21,25 +28,32 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$ktor_version")
-    implementation("io.ktor:ktor-server-netty:$ktor_version")
-    implementation("io.ktor:ktor-server-cio:${ktor_version}")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation( "io.ktor:ktor-server-core:$ktor_version")
-    implementation( "io.ktor:ktor-websockets:$ktor_version")
-    implementation( "io.ktor:ktor-locations:$ktor_version")
-    testImplementation("io.ktor:ktor-server-tests:$ktor_version")
-    implementation( "io.ktor:ktor-jackson:$ktor_version")
-    implementation( "io.ktor:ktor-gson:$ktor_version")
-    implementation( "io.ktor:ktor-html-builder:$ktor_version")
-    implementation( "org.jetbrains:kotlin-css-jvm:1.0.0-pre.86-kotlin-1.3.50")
+    // Ktor Server
+    implementation("io.ktor:ktor-server-cio:${Versions.Ktor}")
+    implementation( "io.ktor:ktor-server-core:${Versions.Ktor}")
 
-    implementation("net.dv8tion:JDA:4.2.0_168")
-    implementation("com.jagrosh:jda-utilities:3.0.5")
-    implementation("org.apache.commons:commons-lang3:3.1")
-    implementation("org.mongodb:mongo-java-driver:3.12.1")
+    // HTML
+    implementation( "io.ktor:ktor-html-builder:${Versions.Ktor}")
+    implementation( "org.jetbrains:kotlin-css-jvm:${Versions.KotlinCssJvm}")
+
+    // Discord
+    implementation("net.dv8tion:JDA:${Versions.JDA}")
+    implementation("com.jagrosh:jda-utilities:${Versions.JDAUtilities}")
+
+    // Util
+    implementation("org.apache.commons:commons-lang3:${Versions.CommonsLang}")
+
+    // Logging
+    implementation("io.github.microutils:kotlin-logging:${Versions.KotlinLogging}")
+    implementation("ch.qos.logback:logback-core:${Versions.Logback}")
+    implementation("ch.qos.logback:logback-classic:${Versions.Logback}")
+    implementation("org.fusesource.jansi:jansi:${Versions.jansi}")
+
+    // Testing
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit5"))
+    testImplementation("org.junit.jupiter:junit-jupiter:${Versions.JUnit}")
 }
-
 
 kotlin {
     target {
@@ -61,6 +75,12 @@ kotlin {
             useExperimentalAnnotation("kotlin.time.ExperimentalTime")
             useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
         }
+    }
+}
+
+tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
+    manifest {
+        attributes("Main-Class" to "com.discord.bikumin.MainKt")
     }
 }
 

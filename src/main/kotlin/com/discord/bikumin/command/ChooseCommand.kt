@@ -1,4 +1,4 @@
-package com.discord.bikumin.command.common
+package com.discord.bikumin.command
 
 import com.discord.bikumin.Bot
 import com.jagrosh.jdautilities.command.Command
