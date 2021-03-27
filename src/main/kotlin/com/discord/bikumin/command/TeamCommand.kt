@@ -1,6 +1,6 @@
 package com.discord.bikumin.command
 
-import com.discord.bikumin.Config
+import com.discord.bikumin.Env
 import com.discord.bikumin.util.NumberUtils
 import com.discord.bikumin.util.TagUtils
 import com.discord.bikumin.util.TeamUtils
@@ -8,7 +8,6 @@ import com.jagrosh.jdautilities.command.Command
 import com.jagrosh.jdautilities.command.CommandEvent
 import net.dv8tion.jda.api.EmbedBuilder
 import org.apache.commons.lang3.StringUtils
-import java.awt.Color
 
 class TeamCommand : Command() {
 
@@ -27,7 +26,7 @@ class TeamCommand : Command() {
 
                 if(!NumberUtils.isInteger(args[0])){
                     return reply(EmbedBuilder().apply {
-                        setColor(Color.RED)
+                        setColor(Env.EMBED_COLOR)
                         setTitle("Error")
                         setDescription("チーム形式は1~6で指定してください\n``_t <チーム形式> <name1> <name2> <name3>...``\n" +
                                 "チーム形式\n" +
@@ -44,7 +43,7 @@ class TeamCommand : Command() {
 
                 if(size > 6 || size < 1){
                     return reply(EmbedBuilder().apply {
-                        setColor(Color.RED)
+                        setColor(Env.EMBED_COLOR)
                         setTitle("Error")
                         setDescription("チーム形式は2~6で指定してください\n``_t <チーム形式> <name1> <name2> <name3>...``\n" +
                                 "チーム形式\n" +
@@ -70,7 +69,7 @@ class TeamCommand : Command() {
 
             if (players.size > 12) {
                 return reply(EmbedBuilder().apply {
-                    setColor(Color.RED)
+                    setColor(Env.EMBED_COLOR)
                     setTitle("Error")
                     setDescription("12人を超えています")
                 }.build())
@@ -90,7 +89,7 @@ class TeamCommand : Command() {
                     type = "(" + size + "v" + size + ")"
                 }
 
-                setColor(Config.EMBED_COLOR)
+                setColor(Env.EMBED_COLOR)
                 setTitle("Teams: " + type)
                 var i = 0
                 teams.filter { team -> team.isNotEmpty() }.forEach{ team ->
