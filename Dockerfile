@@ -27,7 +27,9 @@ FROM openjdk:8-jre-alpine
 COPY --from=build /app/build/libs/bikumin-all.jar /app/bikumin.jar
 
 ARG BOT_TOKEN
+ARG EMBED_COLOR
 ENV BOT_TOKEN=$BOT_TOKEN
+ENV EMBED_COLOR=$EMBED_COLOR
 
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "/app/bikumin.jar"]
