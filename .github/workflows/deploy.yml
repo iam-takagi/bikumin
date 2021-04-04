@@ -10,7 +10,6 @@ on:
       - '**.md'
 
 env:
-  EMBED_COLOR: "0,255,0"
 
 jobs:
   build:
@@ -31,4 +30,3 @@ jobs:
             EMBED_COLOR
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          EMBED_COLOR: ${{ env.EMBED_COLOR }}
