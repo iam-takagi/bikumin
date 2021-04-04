@@ -27,6 +27,5 @@ jobs:
           docker_heroku_process_type: worker
           docker_build_args: |
             BOT_TOKEN
-            EMBED_COLOR
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
