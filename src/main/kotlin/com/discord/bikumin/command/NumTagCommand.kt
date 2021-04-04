@@ -26,7 +26,7 @@ class NumTagCommand : Command() {
 
                 if (!NumberUtils.isInteger(args[0])) {
                     return reply(EmbedBuilder().apply {
-                        setColor(Env.EMBED_COLOR)
+                        setColor(Color.YELLOW)
                         setTitle("Error")
                         setDescription("文字数は1~10で指定してください\n``_tag <文字数>``")
                     }.build())
@@ -36,7 +36,7 @@ class NumTagCommand : Command() {
 
                 if (tagLength > 10 || tagLength < 1) {
                     return reply(EmbedBuilder().apply {
-                        setColor(Env.EMBED_COLOR)
+                        setColor(Color.YELLOW)
                         setTitle("Error")
                         setDescription("文字数は1~10で指定してください\n``_tag <文字数>``")
                     }.build())
