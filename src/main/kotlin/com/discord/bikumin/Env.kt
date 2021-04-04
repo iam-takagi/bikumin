@@ -8,7 +8,7 @@ object Env {
     val HOST by string { "0.0.0.0" }
     val PORT by int { 80 }
     val LOG by string { "INFO" }
-    val EMBED_COLOR by color { Color(83, 221, 172) }
+    val EMBED_COLOR by color { Color(0, 255, 0) }
 }
 
 private val stringOrNull: ReadOnlyProperty<Env, String?>

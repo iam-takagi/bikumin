@@ -10,7 +10,7 @@ on:
       - '**.md'
 
 env:
-  EMBED_COLOR: "83,221,172"
+  EMBED_COLOR: "0,255,0"
 
 jobs:
   build:
