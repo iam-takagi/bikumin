@@ -9,8 +9,6 @@ on:
       - LICENSE
       - '**.md'
 
-env:
-
 jobs:
   build:
     runs-on: ubuntu-latest
