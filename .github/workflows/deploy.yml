@@ -9,6 +9,9 @@ on:
       - LICENSE
       - '**.md'
 
+env:
+  EMBED_COLOR: 83,221,172
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,4 +31,4 @@ jobs:
             EMBED_COLOR
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          EMBED_COLOR: 83,221,172
+          EMBED_COLOR: ${{ env.EMBED_COLOR }}
